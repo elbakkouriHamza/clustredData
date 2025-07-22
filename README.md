@@ -1,60 +1,123 @@
-# ClustredData
+# ClusteredData Warehouse
 
-A technical assignment to manage FX (Foreign Exchange) deals.
+A robust Spring Boot application to manage Foreign Exchange (FX) deals, built for reliability, testability, and modern cloud-native deployment.
 
-## API Reference
+---
 
-### Send a Deal
+## 🚀 Features
 
-```http
-POST /api/deals
+- REST API for FX deals
+- Data persistence with PostgreSQL using Spring Data JPA
+- Input validation with Hibernate Validator
+- DTO mapping with ModelMapper
+- Environment variable management via Dotenv
+- Developer productivity tools (DevTools, Makefile)
+- Code coverage with Jacoco
+- Container-ready with Docker & Docker Compose
+
+---
+
+## 📦 Tech Stack
+
+| Layer           | Technology                   |
+|-----------------|-----------------------------|
+| Core Framework  | Spring Boot 3.5.0           |
+| Language        | Java 17                      |
+| ORM/DB Layer    | Spring Data JPA, PostgreSQL |
+| Validation      | Hibernate Validator          |
+| Mapping         | ModelMapper                  |
+| Testing         | JUnit 5, Spring Boot Test   |
+| Utilities       | Lombok, Dotenv              |
+| Dev Tools       | Spring Boot DevTools         |
+| Build           | Maven, Makefile              |
+| Coverage        | Jacoco                       |
+| Containerization| Docker, Docker Compose       |
+
+---
+
+## 🔗 API Example
+
+**Create a Deal**
+
+`POST /api/deals`
+
+```json
+{
+  "id": "DL20250722",
+  "fromCurrencyIsoCode": "USD",
+  "toCurrencyIsoCode": "EUR",
+  "dealAmount": 15000.0,
+  "timestamp": "2025-07-22T10:30:00"
+}
 ```
 
-| Parameter             | Type     | Description                             |
-|-----------------------|----------|-----------------------------------------|
-| `id`                  | string   | **Required.** ID of the deal            |
-| `fromCurrencyIsoCode` | string   | **Required.** Source currency ISO code  |
-| `toCurrencyIsoCode`   | string   | **Required.** Target currency ISO code  |
-| `dealAmount`          | double   | **Required.** Amount of the deal        |
+---
 
-## Deployment
+## 🛠️ Development & Deployment
 
-This project uses `Makefile` commands to simplify app management and testing.
+### Prerequisites
 
-### Run Tests
+- Java 17+
+- Maven 3.8+
+- Docker & Docker Compose (for container-based workflow)
+- Make (for automated tasks, optional but recommended)
+
+### Build & Test
+
+Run tests (with coverage):
 
 ```bash
 make test
 ```
+> Code coverage report will be in `target/site/index.html`
 
-Code coverage is measured using the Jacoco Plugin. Results can be found in the `target/site/index.html` file. The service layer coverage is 100%.
+### Run in Docker (App + PostgreSQL)
 
-### Start Services
-
-To run the Spring Boot application and PostgreSQL database:
-
+Start all services:
 ```bash
 make run
 ```
-
-### Shut Down Services
-
+Shut down:
 ```bash
 make down
 ```
 
-## Tech Stack
+### Environment Variables
 
-- **Server:** Spring Boot, JPA
-- **Unit Testing:** JUnit 5, Mockito
-- **Database:** PostgreSQL
-- **Containerization:** Docker, Docker Compose
+Create a `.env` file for sensitive data (not committed):
 
-## Ports
+```env
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/clustreddata
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=admin
+```
 
-- Spring Boot App: **8084**
-- PostgreSQL Database: **5432**
+---
 
-## Support
+## 🗄️ Project Structure
 
-For support, email: [elbakkourihamza66@gmail.com](mailto:elbakkourihamza66@gmail.com)
+- `/src` — Application source code
+- `/test` — Unit and integration tests
+- `/Dockerfile` — Container build file
+- `/docker-compose.yml` — Multi-service orchestration
+- `/Makefile` — Automation for test/build/run
+
+---
+
+## 🔌 Ports
+
+| Service            | Port  |
+|--------------------|-------|
+| Spring Boot App    | 8084  |
+| PostgreSQL         | 5432  |
+
+---
+
+## 🧑‍💻 Contact & Support
+
+For issues or support, contact:  
+[elbakkourihamza66@gmail.com](mailto:elbakkourihamza66@gmail.com)
+
+---
+
+*Built with Spring Boot 3.5.0 · Java 17 · Docker-ready · MIT License*
